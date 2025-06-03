@@ -91,13 +91,23 @@ terraform apply \
 After creating the role, you can use it in another terminal session or script to run programs that need the role's policies:
 
 ```bash
-eval "$(
+# Do not forget cd if you have not yet in this directory
+$ pushd cmd/cluster-autoscaler/testdata/terraform/ci-infra/
+
+# Verify that you are not using the role
+$ aws sts get-caller-identity
+
+# Assume the role
+$ eval "$(
   ROLE_ARN=$(terraform output -raw ci_role_arn) && \
   CREDS=$(aws sts assume-role --role-arn "$ROLE_ARN" --role-session-name "kibertas-$(date +%s)" --output json) && \
   echo "export AWS_ACCESS_KEY_ID='$(echo $CREDS | jq -r .Credentials.AccessKeyId)'" && \
   echo "export AWS_SECRET_ACCESS_KEY='$(echo $CREDS | jq -r .Credentials.SecretAccessKey)'" && \
   echo "export AWS_SESSION_TOKEN='$(echo $CREDS | jq -r .Credentials.SessionToken)'"
 )"
+
+# Verify that you are using the role
+$ aws sts get-caller-identity
 ```
 
 ### Verifying Role Permissions
@@ -117,3 +127,13 @@ aws ec2 describe-vpcs
 ```
 
 **Note**: The role credentials are temporary and will expire (typically after 1 hour). You'll need to re-assume the role when they expire.
+
+### Running Tests
+
+```bash
+# Do not forget popd if you have not yet in the project root directory
+$ popd
+
+# Run the cluster-autoscaler tests
+$ go test -v -tags ekstest ./cmd/cluster-autoscaler -run TestClusterAutoscalerScaleUpFromNonZero
+```
