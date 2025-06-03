@@ -115,7 +115,10 @@ resource "aws_iam_policy" "kibertas_test_terraform" {
         Resource = [
           "arn:aws:iam::*:role/kibertas-ca-*",
           "arn:aws:iam::*:role/*-cluster",
-          "arn:aws:iam::*:role/*-node"
+          "arn:aws:iam::*:role/*-node",
+          // Otherwise you end up with:
+          //   creating EKS Node Group (kibertas-ca-cluster:kibertas-ca-spot): operation error EKS: CreateNodegroup, https response error StatusCode: 400, RequestID: REQUEST_ID, InvalidRequestException: Failed to validate if SLR: AWSServiceRoleForAmazonEKSNodegroup already exists due to missing permissions for 'iam:GetRole'
+          "arn:aws:iam::*:role/aws-service-role/*"
         ]
       },
       {
