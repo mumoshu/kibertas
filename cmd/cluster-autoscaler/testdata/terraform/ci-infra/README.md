@@ -2,12 +2,9 @@
 
 This directory contains Terraform configuration and IAM policies for setting up least-privileged CI/CD infrastructure for the Kibertas cluster autoscaler tests.
 
-## Quick Setup with Terraform
+## How to use this
 
-Once you run `terraform init`, `terraform plan`, and `terraform apply`, you will have a role with the following policies:
-- `terraform-policy.json`
-- `kubernetes-policy.json`
-- `helm-ecr-policy.json`
+Once you run `terraform init`, `terraform plan`, and `terraform apply`, you will have a role with all the policies needed to run the cluster-autoscaler tests.
 
 You can run `terraform output ci_role_arn` to get the role ARN.
 
