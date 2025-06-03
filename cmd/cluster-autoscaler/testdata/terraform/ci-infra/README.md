@@ -2,13 +2,6 @@
 
 This directory contains Terraform configuration and IAM policies for setting up least-privileged CI/CD infrastructure for the Kibertas cluster autoscaler tests.
 
-## Files
-
-- `ci-iam-setup.tf` - Main Terraform configuration for IAM policies and role
-- `terraform-policy.json` - Core Terraform policy (for AWS CLI setup)
-- `kubernetes-policy.json` - Kubernetes operations policy (for AWS CLI setup)
-- `helm-ecr-policy.json` - Helm ECR access policy (for AWS CLI setup)
-
 ## Quick Setup with Terraform
 
 Once you run `terraform init`, `terraform plan`, and `terraform apply`, you will have a role with the following policies:
