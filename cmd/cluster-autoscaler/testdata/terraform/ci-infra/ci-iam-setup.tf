@@ -196,6 +196,9 @@ resource "aws_iam_policy" "kibertas_test_terraform" {
         Effect = "Allow"
         Action = [
           "ec2:DescribeVpcs",
+          // Otherwise terraform apply using the role created by this terraform will fail with:
+          //   Error: reading EC2 VPC (VPC_ID_HERE) Attribute (enableDnsHostnames): UnauthorizedOperation: You are not authorized to perform this operation
+          "ec2:DescribeVpcAttribute",
           "ec2:DescribeRouteTables",
           "ec2:DescribeInternetGateways",
           "ec2:DescribeNatGateways"
