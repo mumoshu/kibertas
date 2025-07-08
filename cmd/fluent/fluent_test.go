@@ -95,12 +95,12 @@ func TestFluentE2E(t *testing.T) {
 	podYamlFile, err := filepath.Abs(filepath.Join("testdata", "fluentd-alter-log-dir.pod.yaml"))
 	require.NoError(t, err)
 	require.FileExists(t, podYamlFile)
-	kctl.Capture(t,
-		"create", "-f", podYamlFile,
-	)
 	t.Cleanup(func() {
 		kctl.Capture(t, "delete", "-f", podYamlFile)
 	})
+	kctl.Capture(t,
+		"create", "-f", podYamlFile,
+	)
 
 	testkit.PollUntil(t, func() bool {
 		return strings.Contains(kctl.Capture(t, "get", "pod", "fluentd-alter-log-dir"), "Completed")
