@@ -24,9 +24,9 @@ func TestFluentE2E(t *testing.T) {
 		t.Skip("Skipping test in short mode.")
 	}
 
-	prefix := os.Getenv("PREFIX")
+	prefix := os.Getenv("KIBERTAS_PREFIX")
 	if prefix == "" {
-		t.Skip("PREFIX is not set")
+		t.Skip("KIBERTAS_PREFIX is not set")
 	}
 
 	vpcID := os.Getenv("VPC_ID")

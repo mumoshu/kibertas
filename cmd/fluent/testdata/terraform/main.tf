@@ -6,9 +6,9 @@
 // - EKS cluster
 
 // Usage:
-//   terraform init -var vpc_id=$VPC_ID -var region=ap-northeast-1 -var prefix=$PREFIX -backend-config bucket=$TERRAFORM_STATE_BUCKET -backend-config key=$TERRAFORM_STATE_KEY -backend-config region=ap-northeast-1
-//   terraform plan -var vpc_id=$VPC_ID -var region=ap-northeast-1 -var prefix=$PREFIX
-//   terraform apply -var vpc_id=$VPC_ID -var region=ap-northeast-1 -var prefix=$PREFIX
+//   terraform init -var vpc_id=$VPC_ID -var region=ap-northeast-1 -var prefix=$KIBERTAS_PREFIX -backend-config bucket=$TERRAFORM_STATE_BUCKET -backend-config key=$TERRAFORM_STATE_KEY -backend-config region=ap-northeast-1
+//   terraform plan -var vpc_id=$VPC_ID -var region=ap-northeast-1 -var prefix=$KIBERTAS_PREFIX
+//   terraform apply -var vpc_id=$VPC_ID -var region=ap-northeast-1 -var prefix=$KIBERTAS_PREFIX
 
 terraform {
   required_providers {
